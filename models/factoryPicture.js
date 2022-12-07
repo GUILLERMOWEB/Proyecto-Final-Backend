@@ -2,31 +2,41 @@ const mongoose = require("mongoose")
 
 const Schema = mongoose.Schema
 
-const pharmaSchema = new Schema({
+const pictureSchema = new Schema({
 
+    fabricante:{
+        type: String,
+        required: true
+    },
     nombreComercial: {
         type: String,
         required: true
 
     },
-    nombreGenerico: {
+    tipoDePintura: {
         type: String,
         required: true
 
     },
-    cantidadComprimidos:{
+    cantidadDeLitros:{
         type: Number,
         required: true
     },
-    laboratorio:{
+    color: {
         type: String,
         required: true
+
     },
-    obraSocial:{
+ 
+    hogar:{
+        type: Boolean,
+        required: true
+    },
+    automovil:{
         type: Boolean,
         required: true
     }
 })
 
-const Pharm = mongoose.model('Pharm', pharmaSchema)
-module.exports = {Pharm}
+const Pinturas = mongoose.model('Pinturas', pictureSchema)
+module.exports = {Pinturas}

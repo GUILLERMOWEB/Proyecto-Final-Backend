@@ -5,15 +5,15 @@ const router = express.Router()
 const { validarId } = require("../middlewares/validarId")
 
 
-const {index,verMedicamento,crearMedicamento,editarMedicamento, vistaUnicaMedicamento, eliminarMedicamento,crearSession,verCookie,eliminarCookie,verSession,cerrarSession } = require("../controller/indexController")
+const {index,verProducto,crearProducto,editarProducto, vistaUnicaDeProductos, eliminarProducto,crearSession,verCookie,eliminarCookie,verSession,cerrarSession } = require("../controller/indexController")
 const auth = require("../middlewares/auth")
 const { check } = require("express-validator")
 
 
 // Metod GET
 router.get('/', index)
-router.get('/ver',verMedicamento )
-router.get('/ver/:id', validarId, vistaUnicaMedicamento)
+router.get('/ver',verProducto)
+router.get('/ver/:id', validarId, vistaUnicaDeProductos)
 router.get('/crearsession', crearSession)
 router.get('/versession',auth,verSession)
 router.get('/cerrarsession', cerrarSession)
@@ -22,27 +22,27 @@ router.get('/eliminarcookie', eliminarCookie)
 
 //Metodo POST
 router.post('/crear', [
-    check("nombreComercial").not().isEmpty().withMessage("El campo Nombre Comercial es requerido").isLength({ min: 2, max: 10 }).withMessage("El campo debe tener mas de 2 letras y menos de 10"),
-    check("nombreGenerico").not().isEmpty().withMessage("El campo Npmbre Genérico es requerido"),
-    check("cantidadComprimidos").not().isEmpty().withMessage("El campo Cantidad de Comprimidos es requerido"),
-    check("laboratorio").not().isEmpty().withMessage("El campo Laboratorio es requerido"),
-    check("obraSocial").not().isEmpty().withMessage("El campo Obra Social es requerido"),
-], crearMedicamento)
+    check("fabricante").not().isEmpty().withMessage("El campo fabricante es requerido").isLength({ min: 2, max: 10 }).withMessage("El campo debe tener mas de 2 letras y menos de 10"),
+    check("nombreComercial").not().isEmpty().withMessage("El campo Npmbre Comercial es requerido"),
+    check("tipoDePintura").not().isEmpty().withMessage("El campo Tipo de Pintura es requerido"),
+    check("cantidadDeLitros").not().isEmpty().withMessage("El campo cantidad de Litros es requerido"),
+    check("color").not().isEmpty().withMessage("El campo Color es requerido"),
+], crearProducto)
 
 // Metodo PUT
 
 router.put('/editar/:id', validarId, [
-    check("nombreComercial").not().isEmpty().withMessage("El campo Nombre Comercial es requerido").isLength({ min: 2, max: 10 }).withMessage("El campo debe tener mas de 2 letras y menos de 10"),
-    check("nombreGenerico").not().isEmpty().withMessage("El campo Npmbre Genérico es requerido"),
-    check("cantidadComprimidos").not().isEmpty().withMessage("El campo Cantidad de Comprimidos es requerido"),
-    check("laboratorio").not().isEmpty().withMessage("El campo Laboratorio es requerido"),
-    check("obraSocial").not().isEmpty().withMessage("El campo Obra Social es requerido"),
+    check("fabricante").not().isEmpty().withMessage("El campo fabricante es requerido").isLength({ min: 2, max: 10 }).withMessage("El campo debe tener mas de 2 letras y menos de 10"),
+    check("nombreComercial").not().isEmpty().withMessage("El campo Npmbre Comercial es requerido"),
+    check("tipoDePintura").not().isEmpty().withMessage("El campo Tipo de Pintura es requerido"),
+    check("cantidadDeLitros").not().isEmpty().withMessage("El campo cantidad de Litros es requerido"),
+    check("color").not().isEmpty().withMessage("El campo Color es requerido"),
   
-], editarMedicamento)
+], editarProducto)
 
 //Metodo DELETE
 
-router.delete('/eliminar/:id', validarId, eliminarMedicamento)
+router.delete('/eliminar/:id', validarId, eliminarProducto)
 
 
 module.exports = router  

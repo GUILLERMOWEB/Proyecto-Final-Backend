@@ -1,8 +1,8 @@
 
-const { Pharm } = require("../models/medicamentos")
+const { Pinturas} = require("../models/factoryPicture")
 const validarId = async (req, res, next) => {
     try {
-        const item = await Pharm.findById(req.params.id)
+        const item = await Pinturas.findById(req.params.id)
         if (item !== null) {
             next()
         } else {

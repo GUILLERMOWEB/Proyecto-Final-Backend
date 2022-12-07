@@ -1,24 +1,24 @@
 
-const {Pharm} = require("../models/medicamentos")
+const {Pinturas} = require("../models/factoryPicture")
 const { validationResult } = require("express-validator")
 
 const index = (req, res) => {
-    res.status(200).send('Bienvenidos a la farmacia del barrio')
+    res.status(200).send('Fabrica de Pinturas para el Hogar y Automóvil')
 }
 
 
-const vistaUnicaMedicamento = async (req, res) => {
+const vistaUnicaDeProductos = async (req, res) => {
 
-    const item = await Pharm.findById(req.params.id)
+    const item = await Pinturas.findById(req.params.id)
     res.status(200).json({ item })
 }
 
 
-const crearMedicamento = async (req, res) => {
+const crearProducto = async (req, res) => {
     try {
         const err = validationResult(req)
         if (err.isEmpty()) {
-            const item = new Pharm(req.body)
+            const item = new Pinturas(req.body)
             await item.save()
             res.status(201).json({ item })
         } else {
@@ -30,32 +30,30 @@ const crearMedicamento = async (req, res) => {
     }
 }
 
-const editarMedicamento = async (req, res) => {
+const editarProducto = async (req, res) => {
     try {
         const err = validationResult(req)
         if (err.isEmpty()) {
-            await Pharm.findByIdAndUpdate(req.params.id, req.body)
+            await Pinturas.findByIdAndUpdate(req.params.id, req.body)
             res.status(201).json({ msg: "Se actualizó el producto" })
         } else {
             res.status(501).json({ err })
         }
-
-
     } catch (error) {
         res.status(501).json({ error })
     }
 }
 
-const eliminarMedicamento = async (req, res) => {
-    const item = await Pharm.findByIdAndDelete(req.params.id)
+const eliminarProducto = async (req, res) => {
+    const item = await Pinturas.findByIdAndDelete(req.params.id)
     res.status(201).json({ msg: "El Siguiente producto fue eliminado: ", item })
 
 }
 
 
-const verMedicamento = async (req, res) => {
+const verProducto = async (req, res) => {
 
-    const items = await Pharm.find()
+    const items = await Pinturas.find()
     res.status(200).json({ items })
 }
 
@@ -94,4 +92,4 @@ const cerrarSession = (req, res) => {
 
 
 
-module.exports = {index,verMedicamento,crearMedicamento,vistaUnicaMedicamento,editarMedicamento,eliminarMedicamento,crearSession,verCookie,eliminarCookie,verSession,cerrarSession}
+module.exports = {index,verProducto,crearProducto,vistaUnicaDeProductos,editarProducto,eliminarProducto,crearSession,verCookie,eliminarCookie,verSession,cerrarSession}
