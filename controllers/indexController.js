@@ -89,7 +89,11 @@ const cerrarSession = (req, res) => {
         msg: "Sesion Cerrada"
     })
 }
+const logout = (req, res)=>{
+    res.clearCookie("personaEnSession")
+    req.session.destroy()
+    res.json({msg: "Se Cerro la Session"})
+}
 
 
-
-module.exports = {index,verProducto,crearProducto,vistaUnicaDeProductos,editarProducto,eliminarProducto,crearSession,verCookie,eliminarCookie,verSession,cerrarSession}
+module.exports = {index,verProducto,crearProducto,vistaUnicaDeProductos,editarProducto,eliminarProducto,crearSession,verCookie,eliminarCookie,verSession,cerrarSession,logout}
