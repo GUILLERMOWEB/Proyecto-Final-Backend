@@ -1,9 +1,20 @@
 
 const {Pinturas} = require("../models/factoryPicture")
 const { validationResult } = require("express-validator")
+const axios = require("axios")
+
 
 const index = (req, res) => {
     res.status(200).send('Fabrica de Pinturas para el Hogar y Automóvil')
+}
+
+const consultaAxios = async(req, res) =>{
+    try {
+        const respuesta = await axios.get('https://api.nasa.gov/neo/rest/v1/neo/browse?api_key=DEMO_KEY')
+        res.status(200).json({data: respuesta.data, status: respuesta.status})
+    } catch (error) {
+        res.status(500).json({error: 'Error al obtener tu producto desde la API'})
+    }
 }
 
 
@@ -96,4 +107,4 @@ const logout = (req, res)=>{
 }
 
 
-module.exports = {index,verProducto,crearProducto,vistaUnicaDeProductos,editarProducto,eliminarProducto,crearSession,verCookie,eliminarCookie,verSession,cerrarSession,logout}
+module.exports = {index,consultaAxios,verProducto,crearProducto,vistaUnicaDeProductos,editarProducto,eliminarProducto,crearSession,verCookie,eliminarCookie,verSession,cerrarSession,logout}

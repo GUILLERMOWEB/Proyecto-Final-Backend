@@ -6,7 +6,7 @@ const controller = require("../controllers/controller")
 const authSession = require("../middlewares/authSession")
 const authJWT = require("../middlewares/authJWT")
 const { validarId } = require("../middlewares/validarId")
-const {index,verProducto,crearProducto,editarProducto, vistaUnicaDeProductos, eliminarProducto,crearSession,verCookie,eliminarCookie,verSession,cerrarSession,logout} = require("../controllers/indexController")
+const {index,consultaAxios,verProducto,crearProducto,editarProducto, vistaUnicaDeProductos, eliminarProducto,crearSession,verCookie,eliminarCookie,verSession,cerrarSession,logout} = require("../controllers/indexController")
 const auth = require("../middlewares/auth")
 const { check } = require("express-validator")
 const { validateId } = require("../middlewares/validateId")
@@ -21,6 +21,8 @@ router.get('/versession',auth,verSession)
 router.get('/cerrarsession', cerrarSession)
 router.get('/vercookie', verCookie)
 router.get('/eliminarcookie', eliminarCookie)
+router.get('/asteroides',consultaAxios)
+
 router.get("/allUsers",authSession,authJWT,controller.allUsers);
 /* VER UNO */
 router.get("/user/:id",authSession,authJWT,validateId,controller.user);

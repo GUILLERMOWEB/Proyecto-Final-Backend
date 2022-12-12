@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "axios": "^0.27.2",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
@@ -12,9 +13,9 @@
     "mongoose": "^6.7.3",
     "morgan": "^1.10.0"
   },
-  "name": "tarea-3-rutas",
+  "name": "backend-trabajo-final",
   "version": "1.0.0",
-  "description": "Tarea metodos",
+  "description": "Proyecto Final Backend",
   "main": "app.js",
   "scripts": {
     "dev": "node server.js"
